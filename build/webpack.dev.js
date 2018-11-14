@@ -20,13 +20,12 @@ module.exports = merge(common, {
                 test: /\.(png|svg|jpg|gif|jpeg)$/,
                 use: {
                     loader:'url-loader',
-                    options: {
-                        limit: 500,
-                        name: 'assets/images/[name].[ext]'
-                    }
+                    // options: {
+                    //     limit: 500,
+                    //     name: 'assets/images/[name].[ext]'
+                    // }
                 }
             },
-
             {
                 test: /\.less$/,
                 use: [

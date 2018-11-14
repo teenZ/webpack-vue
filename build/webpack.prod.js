@@ -21,7 +21,20 @@ module.exports = merge(common, {
                    'css-loader',
                    'less-loader'
                 ]
-            }
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: 
+                        {
+                            limit: 5000,
+                            name: "assets/images/[name].[ext]"
+                        }
+                    }
+                ],
+            }    
         ]
     },
     plugins: [
