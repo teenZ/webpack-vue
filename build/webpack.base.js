@@ -4,6 +4,7 @@ const path = require("path");
 const webpack = require("webpack");
 const VueLoaderPlugin = require('vue-loader/lib/plugin'); // vue-loader插件
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // html插件
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //分离css
 
 module.exports = {
     //入口文件
@@ -39,15 +40,14 @@ module.exports = {
             {
                 test: /\.less$/,
                 use: [
-                    {
-                        loader: "style-loader" // creates style nodes from JS strings
-                    }, 
-                    {
-                        loader: "css-loader" // translates CSS into CommonJS
-                    }, 
-                    {
-                        loader: "less-loader" // compiles Less to CSS
-                    }
+                   {
+                       loader: MiniCssExtractPlugin.loader,
+                       options: {
+                           publicPath: '../'
+                       }
+                   },
+                   'css-loader',
+                   'less-loader'
                 ]
             }
         ]
@@ -57,6 +57,10 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../index.html')
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+            chunkFilename: '[id].css'
         })
     ]
 };

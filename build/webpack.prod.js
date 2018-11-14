@@ -9,7 +9,7 @@ module.exports = merge(common, {
     plugins: [],
     mode: 'production',
     output: {
-        filename: 'js/[name].[contenthash].js',
+        filename: 'js/[name].js',
         path: path.resolve(__dirname, '../dist')
     }
 })
