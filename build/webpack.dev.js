@@ -13,6 +13,30 @@ module.exports = merge(common, {
         filename: 'js/[name].js',
         path: path.resolve(__dirname, '../dist')
     },
-    module: {},
+    module: {
+        rules: [
+            //图片
+            {
+                test: /\.(png|svg|jpg|gif|jpeg)$/,
+                use: {
+                    loader:'url-loader',
+                    options: {
+                        limit: 500,
+                        name: 'assets/images/[name].[ext]'
+                    }
+                }
+            },
+
+            {
+                test: /\.less$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    // 'postcss-loader',
+                    'less-loader',
+                ],
+              },
+        ]
+    },
     mode: 'development'
 });

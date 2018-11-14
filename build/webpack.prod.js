@@ -7,7 +7,23 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = merge(common, {
-    module: {},
+    module: {
+        rules: [
+            {
+                test: /\.less$/,
+                use: [
+                   {
+                       loader: MiniCssExtractPlugin.loader,
+                       options: {
+                           publicPath: '../'
+                       }
+                   },
+                   'css-loader',
+                   'less-loader'
+                ]
+            }
+        ]
+    },
     plugins: [
         new CleanWebpackPlugin(['dist/*'], {
             root: path.resolve(__dirname, '../')
