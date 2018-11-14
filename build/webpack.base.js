@@ -56,7 +56,8 @@ module.exports = {
                 use: {
                     loader:'url-loader',
                     options: {
-                        limit: 500
+                        limit: 500,
+                        name: 'assets/images/[name].[ext]'
                     }
                 }
             }
@@ -69,8 +70,8 @@ module.exports = {
             template: path.resolve(__dirname, '../index.html')
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].css',
-            chunkFilename: '[id].css'
+            filename: 'css/[name].css',
+            chunkFilename: 'css/[id].css'
         })
     ]
 };
