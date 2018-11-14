@@ -49,6 +49,16 @@ module.exports = {
                    'css-loader',
                    'less-loader'
                 ]
+            },
+            //图片
+            {
+                test: /\.(png|svg|jpg|gif|jpeg)$/,
+                use: {
+                    loader:'url-loader',
+                    options: {
+                        limit: 500
+                    }
+                }
             }
         ]
     },
