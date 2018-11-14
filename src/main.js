@@ -1,3 +1,4 @@
+import './assets/styles/index.less'
 import Vue from 'vue';
 
 let app = new Vue({
