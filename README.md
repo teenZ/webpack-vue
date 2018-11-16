@@ -1,7 +1,9 @@
 # webpack-vue
 尝试着写个vue的脚手架吧
 
-refs: https://www.cnblogs.com/tugenhua0707/p/9709579.html
+refs:   
+1. https://www.cnblogs.com/tugenhua0707/p/9709579.html  
+2. 《vue.js实战》
 
 vue-router
 ------------
@@ -15,27 +17,75 @@ hash是URL的锚点(#), 代表网页中的一个位置，如果只改变#后的�
 
 ### 2. 两个标签
 * router-link  
+```<router-link>```会被渲染为一个```<a>```标签；有几个属性：   
+   * to: 指定需要跳转的路径  
+   * tag: 指定渲染成什么标签  
+     >```<router-link to="" tag="li"></router-link> ```  
+   * replace: 使用replace不会留下History记录，所以导航后不能用后退键返回上一个页面
+     >```<router-link to="" replace></router-link>```  
+   * active-class: 当路由匹配成功时，会自动给当前元素设置一个class(" router-link-active ")，可以用该属性来修改默认的样式，如可以设置高亮 
+      > ```css
+      > .router-link-active{
+      >     background: #ccffee;
+      > }
+
 * router-view  
 ```<router-link>```是点击的部分，```<router-view>```是定义显示的部分，当我们点击之后，路由匹配组件的内容后会在```<router-view>```显示出来，```<router-link>```还需要一个属性 to, 它的含义就是到哪里去的意思
 
-### 3. 路由配置
-```
-const routes = [
-   { path: './header', componnet: header }
-   { path: './footer', componnet: footer } 
-]
+### 3. 两种跳转方式
+* vue-router  
+* router实例方法   
+此适用于需要在JS中写跳转页面   
+  >```js
+  >this.$router.push('./home'); //类似于 window.location.href
+  >this.$router.replace('./home'); // 类似于router-link中的 replace 功能，不会向history添加新纪录 
+  >this.$router.go(-1); // 类似于window.history.go()
 
-const router = new VueRouter({
-    routes: routes
-})
+### 4. 路由配置
+>```js
+>const routes = [
+>   { path: './header', componnet: header }
+>   { path: './footer', componnet: footer } 
+>]
+>
+>const router = new VueRouter({
+>    routes: routes
+>})
+>  
+>new Vue({
+>  el: '#app',
+>  router: router, //router实例注入vue根实例
+>  render: h => h()
+>});
 
-new Vue({
-  el: '#app',
-  router: router, //router实例注入vue根实例
-  render: h => h()
-});
-```
+### 5. 其他用法
+* SPA修改网页标题  
+vue-router 提供了两个钩子函数, 适合做```全局路由守卫```   
+  * beforeEach
+  >```js
+  > // route.js
+  >const routeConfig = [
+  >   {
+  >       path: '/home',
+  >       meta: {
+  >           title: '首页'
+  >       }
+  >   } 
+  >];
+  >
+  >const router = new VueRouter(routeConfig);
+  >router.beforeEach((to, from, next) => {
+  >    window.document.title = to.meta.title;
+  >    next();
+  >}) 
+  >/** 导航钩子 3 个参数
+  >* to: 即将要进入的目标的路由对象
+  >* from: 当前导航即将要离开的路由对象
+  >* next：调用改方法后，才能进入下一个钩子 
+  >*/  
+  * afterEach
 
-### bug encountered
-1. Module not found: Error: Can't resolve './assets/images/yy.jpg' in 'D:\something-new\webpack-vue\src\views'  
+bug encountered
+-----------
+1. ``` Module not found: Error: Can't resolve './assets/images/yy.jpg' in 'D:\something-new\webpack-vue\src\views'```  
 需要注意引用图片是的路径，最好用绝对路径写？

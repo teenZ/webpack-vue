@@ -9,10 +9,12 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/leo',
+        name: 'leo',
         component: leo
     },
     {
         path: '/young',
+        name: 'young',
         component: young
     },
     {
@@ -26,4 +28,10 @@ var router = new VueRouter({
     routes: routes
 });
 
+router.beforeEach((to, from, next) => {
+    if(to.name === 'young') {
+        alert("hello");
+    }
+    next(); 
+})
 export default router;
