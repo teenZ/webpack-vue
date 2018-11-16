@@ -3,6 +3,8 @@
         <header>
             <router-link to="/leo">Leo</router-link>
             <router-link to="/young">Yang</router-link>
+            <router-link to="/leo/luoyu">罗玉</router-link>
+            <router-link to="/leo/runyu">天帝</router-link>
         </header>
         <router-view></router-view>
     </div>

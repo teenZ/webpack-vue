@@ -38,27 +38,111 @@ hash是URL的锚点(#), 代表网页中的一个位置，如果只改变#后的�
 此适用于需要在JS中写跳转页面   
   >```js
   >this.$router.push('./home'); //类似于 window.location.href
+  >this.$router.push({
+  >    name: '', // 改成path的话参数不生效！
+  >    params: {} // 可在页面console.log(this.$route.params.attr)获得
+  >})
   >this.$router.replace('./home'); // 类似于router-link中的 replace 功能，不会向history添加新纪录 
   >this.$router.go(-1); // 类似于window.history.go()
 
 ### 4. 路由配置
->```js
->const routes = [
->   { path: './header', componnet: header }
->   { path: './footer', componnet: footer } 
->]
->
->const router = new VueRouter({
->    routes: routes
->})
->  
->new Vue({
->  el: '#app',
->  router: router, //router实例注入vue根实例
->  render: h => h()
->});
+* route.js
+  >```js
+  >const routes = [
+  >   { path: './header', componnet: header }
+  >   { path: './footer', componnet: footer } 
+  >]
+  >
+  >const router = new VueRouter({
+  >    routes: routes
+  >})
+  >  
+  >new Vue({
+  >  el: '#app',
+  >  router: router, //router实例注入vue根实例
+  >  render: h => h()
+  >});
 
-### 5. 其他用法
+* 懒加载：当访问页面的时候才会去加载相关资源，提高页面的访问速度
+  >```js
+  >const routes = [
+  >     { 
+  >         path: './header', 
+  >         componnet: resolve => require(['./views/header'], resolve) // 使用懒加载
+  >     }  
+  >]
+
+* 参数配置   
+  >```js
+  >route.js
+  >const routes = [
+  >     { 
+  >         path: './header/:id', 
+  >         name: 'header',
+  >         componnet: resolve => require(['./views/header'], resolve) // 使用懒加载
+  >     }  
+  >]
+  >```
+  >```html
+  >//app.vue
+  ><template> 
+  ><router-link to="header/1">
+  ></template>
+  >
+  ><script>
+  >    console.log(this.$route.params.id) //1
+  ></script>
+
+### 5. 命名视图
+
+### 6. 嵌套路由（cf: 兄弟路由）
+>```js
+>//route.js
+>const routes = [
+>    {
+>        path: '/leo',
+>        name: 'leo',
+>        component: leo,
+>        // 子路由
+>        children: [
+>            {
+>                path: 'luoyu',
+>                component: resolve => require(['./views/luoyu'], resolve)
+>            },
+>            {
+>                path: 'runyu',
+>                component: resolve => require(['./views/runyu'], resolve)
+>            }
+>        ]
+>    }
+>]
+>```
+>```html
+><!--app.vue-->
+><template>
+>    <div id="app">
+>        <header>
+>            <router-link to="/leo">Leo</router-link>
+>            <router-link to="/young">Yang</router-link>
+>            <router-link to="/leo/luoyu">罗玉</router-link>
+>            <router-link to="/leo/runyu">天帝</router-link>
+>        </header>
+>        <router-view></router-view>
+>    </div>
+></template>
+>```
+>```html
+><!--leo.vue-->
+><!--父组件，一定要有个router-view，父子路由视图一起显示，不然没必要用嵌套路由呀-->
+><template>
+>   <div>
+>        <h1>哦还是被你发现了</h1>
+>        <p>{{msg}}</p>
+>        <router-view></router-view>
+>    </div>
+></template>
+
+### 7. 其他用法
 * SPA修改网页标题  
 vue-router 提供了两个钩子函数, 适合做```全局路由守卫```   
   * beforeEach
@@ -81,7 +165,7 @@ vue-router 提供了两个钩子函数, 适合做```全局路由守卫```
   >/** 导航钩子 3 个参数
   >* to: 即将要进入的目标的路由对象
   >* from: 当前导航即将要离开的路由对象
-  >* next：调用改方法后，才能进入下一个钩子 
+  >* next：调用改方法后，才能进入下一个钩子，可指定 next('./home') 
   >*/  
   * afterEach
 
