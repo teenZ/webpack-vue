@@ -35,3 +35,7 @@ new Vue({
   render: h => h()
 });
 ```
+
+### bug encountered
+1. Module not found: Error: Can't resolve './assets/images/yy.jpg' in 'D:\something-new\webpack-vue\src\views'  
+需要注意引用图片是的路径，最好用绝对路径写？
