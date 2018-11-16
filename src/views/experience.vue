@@ -1,13 +1,12 @@
 <template>
     <div>
-        <h4>这是总在拖润玉后腿的罗玉</h4>
-        <p></p>
+        <p>都是悄咪咪地说</p>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'luoyu',
+    name: 'experience',
     data() {
         return {} 
     },
@@ -18,6 +17,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-
 </style>
 

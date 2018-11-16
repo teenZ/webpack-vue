@@ -1,13 +1,13 @@
 <template>
     <div>
-        <h4>这是总在拖润玉后腿的罗玉</h4>
-        <p></p>
+        <p>名场面</p>
+        <img src="../assets/images/runyu.jpeg" alt="runyu" class="image">
     </div>
 </template>
 
 <script>
 export default {
-    name: 'luoyu',
+    name: 'scene',
     data() {
         return {} 
     },
@@ -18,6 +18,9 @@ export default {
 </script>
 
 <style scoped lang="less">
-
+.image{
+    width: 100px;
+    height: auto;
+}
 </style>
 

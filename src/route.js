@@ -9,34 +9,67 @@ Vue.use(VueRouter);
 
 const routes = [
     {
-        path: '/leo',
-        name: 'leo',
-        component: leo,
-        // 子路由
+        path: '/home',
+        name: 'home',
+        components: {
+            idol: resolve => require(['./views/idol'], resolve),
+            scene: resolve => require(['./views/picture'], resolve),
+            experience: resolve => require(['./views/experience'], resolve)
+        },
         children: [
             {
-                path: 'luoyu',
-                component: resolve => require(['./views/luoyu'], resolve)
+                path: 'leo',
+                name: 'leo',
+                component: resolve => require(['./views/leo'], resolve),
+                children: [
+                    {
+                        path: 'luoyu',
+                        component: resolve => require(['./views/luoyu'], resolve)
+                    },
+                    {
+                        path: 'runyu',
+                        component: resolve => require(['./views/runyu'], resolve)
+                    }
+                ]
             },
             {
-                path: 'runyu',
-                component: resolve => require(['./views/runyu'], resolve)
+                path: 'young',
+                name: 'young',
+                component: young
             }
         ]
     },
-    {
-        path: '/young',
-        name: 'young',
-        component: young
-    },
+    // {
+    //     path: '/leo',
+    //     name: 'leo',
+    //     components: {
+    //         intro: resolve => require(['./views/leo'], resolve)
+    //     },
+    //     // 子路由
+    //     children: [
+    //         {
+    //             path: 'luoyu',
+    //             component: resolve => require(['./views/luoyu'], resolve)
+    //         },
+    //         {
+    //             path: 'runyu',
+    //             component: resolve => require(['./views/runyu'], resolve)
+    //         }
+    //     ]
+    // },
+    // {
+    //     path: '/young',
+    //     name: 'young',
+    //     component: young
+    // },
     {
         path: '*',
-        redirect: '/leo'
+        redirect: '/home'
     }
 ];
 
 var router = new VueRouter({
-    // base: 'app.vue',
+    // base: '../app.vue',
     routes: routes
 });
 
