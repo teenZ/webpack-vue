@@ -2,10 +2,10 @@ import './assets/styles/index.less';
 import './assets/styles/home.less';
 import Vue from 'vue';
 import App from './app.vue'
-import router from './route';
+import router from './route.js';
 
-let app = new Vue({
-    el: '#root',
+new Vue({
+    el: '#app',
     router: router,
     render: h => h(App)
 })

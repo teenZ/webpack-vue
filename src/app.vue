@@ -1,6 +1,10 @@
 <template>
     <div id="app">
-        hello, world
+        <header>
+            <router-link to="/leo">Leo</router-link>
+            <router-link to="/young">Yang</router-link>
+        </header>
+        <router-view></router-view>
     </div>
 </template>
 
