@@ -2,8 +2,23 @@
 尝试着写个vue的脚手架吧
 
 refs:   
-1. https://www.cnblogs.com/tugenhua0707/p/9709579.html  
+1. https://www.cnblogs.com/tugenhua0707/p/9709579.html (vue-router)  
 2. 《vue.js实战》
+
+vue-cycle
+-----------
+### 1.钩子函数  
+* beforeCreate(vue1.0+--init): 组件实例刚被创建，组件属性计算之前
+* created: 实例创建完成后调用，此阶段完成了数据的观测等，属性已绑定，但DOM还未生成，尚未挂载，`$el`属性还不存在。需要初始化处理一些数据时会比较有用。  
+* beforeMount(vue1.0+---beforeCompile): 模板编译/挂载之前
+* mounted(vue1.0+---compiled): `$el`挂载到实例上后调用
+* beforeUpdate：组件更新之前
+* updated: 组件更新之后
+* activated: `keep-alive`，组件被激活时调用
+* deactivated: 组件被移除时调用
+* beforeDestroy: 实例销毁之前调用，主要解绑一下使用`addEventListener`监听的事件等
+* destroyed
+
 
 vue-router
 ------------
