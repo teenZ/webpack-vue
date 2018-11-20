@@ -2,7 +2,7 @@ import './assets/styles/index.less';
 import './assets/styles/home.less';
 import Vue from 'vue';
 import App from './app.vue'
-import router from './route.js';
+import router from './routes/route.js';
 
 new Vue({
     el: '#app',
