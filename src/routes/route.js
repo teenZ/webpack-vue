@@ -20,9 +20,9 @@ const routes = [
                 component: resolve => require(['@/views/leo'], resolve)
             },
             {
-                path: 'young',
-                name: 'young',
-                component: resolve=> require(['@/views/young'], resolve)
+                path: 'cycle',
+                name: 'cycle',
+                component: resolve=> require(['@/views/vueCycle/cycle'], resolve)
             }
         ]
     },

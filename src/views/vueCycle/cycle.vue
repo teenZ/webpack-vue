@@ -1,13 +1,12 @@
-
 <template>
     <div>
-        <router-link :to="{name: 'home'}">welcome to the teenZ's</router-link> 
+        this is cycle 
     </div> 
 </template>
 
 <script>
 export default {
-    name: 'header'
+    name: 'cycle'
 }
 </script>
  <style lang="less" scoped>

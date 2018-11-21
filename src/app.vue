@@ -1,9 +1,9 @@
 <template>
     <div id="app">
-        <router-view name="header" class="header">dddd</router-view>
+        <router-view name="header" class="view header">dddd</router-view>
         <div class="main">
-            <router-view name="sidebar" class="sidebar"></router-view>
-            <router-view name="content" class="content"></router-view>
+            <router-view name="sidebar" class="view sidebar"></router-view>
+            <router-view name="content" class="view content"></router-view>
         </div>
     </div>
 </template>
@@ -18,11 +18,14 @@ export default {
     #app{
         width: 100%;
         height: 100%;
-        color: red;
+        font-size: 14px;
         display: flex;
         flex-direction: column;
+        .view {
+            box-sizing: border-box;
+            border: 1px solid pink;
+        }
         .header {
-            background: pink;
             flex: 0 0 80px;
         }
         .main {
@@ -30,11 +33,9 @@ export default {
             display: flex;
             .sidebar {
                 flex: 0 0 120px;
-                background: plum;
             }
             .content {
                 flex: 1;
-                background: #ccffee;
             }
         }
     }
