@@ -1,8 +1,10 @@
 <template>
     <div id="app">
-        <router-view name="idol" class="header"></router-view>
-        <router-view name="scene" class="view one"></router-view>
-        <router-view name="experience" class="view two"></router-view>
+        <router-view name="header" class="view header">dddd</router-view>
+        <div class="main">
+            <router-view name="sidebar" class="view sidebar"></router-view>
+            <router-view name="content" class="view content"></router-view>
+        </div>
     </div>
 </template>
 
@@ -14,20 +16,28 @@ export default {
 
 <style scoped lang="less">
     #app{
-        color: red;
-    }
-    .header {
         width: 100%;
-        height: 200px;
-        border: 1px solid thistle;
-        box-sizing: border-box;
-    }
-    .view{
-        border: 1px solid yellowgreen;
-        height: 300px;
-        float: left;
-        box-sizing: border-box;
-        width: 50%;
+        height: 100%;
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        .view {
+            box-sizing: border-box;
+            border: 1px solid pink;
+        }
+        .header {
+            flex: 0 0 80px;
+        }
+        .main {
+            flex: 1;
+            display: flex;
+            .sidebar {
+                flex: 0 0 120px;
+            }
+            .content {
+                flex: 1;
+            }
+        }
     }
     
 </style>

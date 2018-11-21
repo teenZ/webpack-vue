@@ -5,6 +5,8 @@ const webpack = require("webpack");
 const VueLoaderPlugin = require('vue-loader/lib/plugin'); // vue-loader插件
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // html插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //分离css
+const atPath = path.resolve(__dirname, "../src");
+console.log(atPath);
 
 module.exports = {
     //入口文件
@@ -27,7 +29,7 @@ module.exports = {
     resolve: {
         alias: {
             vue$: "vue/dist/vue.esm.js",
-            "@": path.resolve(__dirname, "./src") //????
+            "@": atPath //????
         },
         extensions: [".js", ".vue", ".json"]
     },
